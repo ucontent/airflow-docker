@@ -19,7 +19,8 @@ ARG AIRENV=/home/${USERNAME}/air-env
 
 ENV ENV   $AIRHOME/.profile
 
-RUN addgroup -g "${GID}" "${GROUP}" && adduser -D -s /bin/sh \
+RUN mkdir ${DATA} && chmod 777 ${DATA} \
+    && addgroup -g "${GID}" "${GROUP}" && adduser -D -s /bin/sh \
        -g "AirFlow user" \
        -G "${GROUP}" -u "${UID}" \
        "${USERNAME}"
