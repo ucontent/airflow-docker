@@ -1,1 +1,1 @@
-airflow>=1.10.0
+https://github.com/apache/incubator-airflow/archive/1.10.0.tar.gz
