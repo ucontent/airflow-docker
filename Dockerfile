@@ -3,8 +3,6 @@ FROM $BASE as build
 
 LABEL maintainer="Antonio Dell'Elce"
 
-ARG PREFIX=/app/airflow
-ENV INSTALLDIR  ${PREFIX}
 
 # temp install line before switching to use multi-stage install
 RUN apk add --no-cache gcc binutils
@@ -27,7 +25,6 @@ RUN addgroup -g "${GID}" "${GROUP}" && adduser -D -s /bin/sh \
     "${USERNAME}" \
     && chown -R "${USERNAME}:${GROUP}" "${PREFIX}" \
     && mkdir -p "${DATA}" && chown "${USERNAME}":"${GROUP}" "${DATA}" \
-    && echo 'export PATH="'${PREFIX}'/bin:$PATH"' >> ${AIRHOME}/.profile \
     && echo '. '${AIRENV}'/bin/activate'           >> ${AIRHOME}/.profile
 
 USER ${USERNAME}
