@@ -28,7 +28,7 @@ RUN addgroup -g "${GID}" "${GROUP}" && adduser -D -s /bin/sh \
     && chown -R "${USERNAME}:${GROUP}" "${PREFIX}" \
     && mkdir -p "${DATA}" && chown "${USERNAME}":"${GROUP}" "${DATA}" \
     && echo 'export PATH="'${PREFIX}'/bin:$PATH"' >> ${AIRHOME}/.profile \
-    && echo '. '${AIRENV}'/bin/activate           >> ${AIRHOME}/.profile
+    && echo '. '${AIRENV}'/bin/activate'           >> ${AIRHOME}/.profile
 
 USER ${USERNAME}
 
