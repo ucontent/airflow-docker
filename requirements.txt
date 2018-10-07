@@ -1,1 +1,1 @@
-airflow
+airflow>=1.10.0
