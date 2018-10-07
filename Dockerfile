@@ -24,6 +24,7 @@ RUN addgroup -g "${GID}" "${GROUP}" && adduser -D -s /bin/sh \
     -G "${GROUP}" -u "${UID}" \
     "${USERNAME}" \
     && chown -R "${USERNAME}:${GROUP}" "${AIRHOME}" \
+    && mkdir -p "${AIRENV}" && chown "${USERNAME}":"${GROUP}" "${DATA}" \
     && mkdir -p "${DATA}" && chown "${USERNAME}":"${GROUP}" "${DATA}" \
     && echo '. '${AIRENV}'/bin/activate'           >> ${AIRHOME}/.profile
 
