@@ -22,21 +22,21 @@ ENV ENV   $AIRHOME/.profile
 RUN addgroup -g "${GID}" "${GROUP}" && adduser -D -s /bin/sh \
        -g "AirFlow user" \
        -G "${GROUP}" -u "${UID}" \
-       "${USERNAME}" \
-    && mkdir -p "${AIRENV}" && chown "${USERNAME}":"${GROUP}" "${AIRENV}" \
+       "${USERNAME}"
+
+USER ${USERNAME}
+
+RUN    mkdir -p "${AIRENV}" && chown "${USERNAME}":"${GROUP}" "${AIRENV}" \
     && chown -R "${USERNAME}:${GROUP}" "${AIRHOME}" \
     && mkdir -p "${DATA}" && chown "${USERNAME}":"${GROUP}" "${DATA}" \
     && cd "${AIRENV}" && "${INSTALLDIR}/bin/python3" -m venv . \
     && echo '. '${AIRENV}'/bin/activate'           >> ${AIRHOME}/.profile
 
-USER ${USERNAME}
-
-#create virtualenv
 WORKDIR $AIRENV
 COPY requirements.txt  /tmp/requirements.txt
 
 # install airflow and requirents
-RUN    . ${AIRENV}/bin/activate \
+RUN    ${AIRENV}/bin/activate \
     && pip install -U pip setuptools \
     && pip install -r /tmp/requirements.txt
 
