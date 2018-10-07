@@ -1,1 +1,1 @@
-https://github.com/apache/incubator-airflow/archive/1.10.0.tar.gz
+https://github.com/ucontent/incubator-airflow/archive/1.10.0-py37.tar.gz
