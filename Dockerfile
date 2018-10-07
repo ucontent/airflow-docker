@@ -1,4 +1,4 @@
-ARG BASE=dellelce/python-base
+ARG BASE=dellelce/py-base
 FROM $BASE as build
 
 LABEL maintainer="Antonio Dell'Elce"
