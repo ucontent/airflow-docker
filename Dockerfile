@@ -23,7 +23,7 @@ RUN addgroup -g "${GID}" "${GROUP}" && adduser -D -s /bin/sh \
     -g "AirFlow user" \
     -G "${GROUP}" -u "${UID}" \
     "${USERNAME}" \
-    && chown -R "${USERNAME}:${GROUP}" "${PREFIX}" \
+    && chown -R "${USERNAME}:${GROUP}" "${AIRHOME}" \
     && mkdir -p "${DATA}" && chown "${USERNAME}":"${GROUP}" "${DATA}" \
     && echo '. '${AIRENV}'/bin/activate'           >> ${AIRHOME}/.profile
 
