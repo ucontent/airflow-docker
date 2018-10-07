@@ -38,7 +38,7 @@ WORKDIR $AIRENV
 COPY requirements.txt  /tmp/requirements.txt
 
 # install airflow and requirements
-RUN    ${AIRENV}/bin/activate \
+RUN    . ${AIRENV}/bin/activate \
     && pip install -U pip setuptools \
     && pip install -r /tmp/requirements.txt
 
