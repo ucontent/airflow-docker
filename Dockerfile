@@ -26,6 +26,7 @@ RUN addgroup -g "${GID}" "${GROUP}" && adduser -D -s /bin/sh \
     && mkdir -p "${AIRENV}" && chown "${USERNAME}":"${GROUP}" "${AIRENV}" \
     && chown -R "${USERNAME}:${GROUP}" "${AIRHOME}" \
     && mkdir -p "${DATA}" && chown "${USERNAME}":"${GROUP}" "${DATA}" \
+    && cd "${AIRENV}" && "${INSTALLDIR}/bin/python3" -m venv . \
     && echo '. '${AIRENV}'/bin/activate'           >> ${AIRHOME}/.profile
 
 USER ${USERNAME}
