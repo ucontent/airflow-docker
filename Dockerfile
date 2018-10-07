@@ -40,7 +40,7 @@ COPY requirements.txt  /tmp/requirements.txt
 # install airflow and requirements
 RUN    . ${AIRENV}/bin/activate \
     && pip install -U pip setuptools \
-    && pip install -r /tmp/requirements.txt
+    && SLUGIFY_USES_TEXT_UNIDECODE=yes pip install -r /tmp/requirements.txt
 
 VOLUME ${DATA}
 ENV AIRDATA  ${DATA}
