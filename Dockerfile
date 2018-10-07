@@ -20,11 +20,11 @@ ARG AIRENV=/home/${USERNAME}/air-env
 ENV ENV   $AIRHOME/.profile
 
 RUN addgroup -g "${GID}" "${GROUP}" && adduser -D -s /bin/sh \
-    -g "AirFlow user" \
-    -G "${GROUP}" -u "${UID}" \
-    "${USERNAME}" \
+       -g "AirFlow user" \
+       -G "${GROUP}" -u "${UID}" \
+       "${USERNAME}" \
+    && mkdir -p "${AIRENV}" && chown "${USERNAME}":"${GROUP}" "${AIRENV}" \
     && chown -R "${USERNAME}:${GROUP}" "${AIRHOME}" \
-    && mkdir -p "${AIRENV}" && chown "${USERNAME}":"${GROUP}" "${DATA}" \
     && mkdir -p "${DATA}" && chown "${USERNAME}":"${GROUP}" "${DATA}" \
     && echo '. '${AIRENV}'/bin/activate'           >> ${AIRHOME}/.profile
 
