@@ -5,7 +5,7 @@ LABEL maintainer="Antonio Dell'Elce"
 
 
 # temp install line before switching to use multi-stage install
-RUN apk add --no-cache gcc binutils
+RUN apk add --no-cache gcc binutils gfortran
 
 # commands are intended for busybox: if BASE is changed to non-BusyBox these may fail!
 ARG GID=2001
