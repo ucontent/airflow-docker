@@ -6,12 +6,13 @@ log="main.${timestamp}.log"
 
 ## MAIN ##
 
-ls -lt "${log}"
+echo "Log: ${log}"
+echo
 set -x
 
 BASE_IMAGE="dellelce/py-base" \
 TARGET_IMAGE="dellelce/airflow-base" \
 PREFIX="/app/airflow" \
-./main.sh > ${log}
+./main.sh > ${log} &
 
 ## EOF ##
