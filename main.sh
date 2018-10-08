@@ -30,9 +30,9 @@
 
 ### MAIN ###
 
- docker build -t "$image" --build-arg BASE=$BASE_IMAGE --build-arg PREFIX=$prefix .
+ docker build -t "$image" --build-arg BASE=$BASE_IMAGE --build-arg PREFIX=$prefix . 2>&1
  build_rc="$?"
- [ $build_rc -eq 0 -a ! -z "$image" ] && { docker_hub "$image"; return $?; }
+ [ $build_rc -eq 0 -a ! -z "$image" ] && { docker_hub "$image"; exit $?; }
  exit $build_rc
 
 ### EOF ###
