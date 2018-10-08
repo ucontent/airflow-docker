@@ -4,7 +4,8 @@ FROM $BASE as build
 LABEL maintainer="Antonio Dell'Elce"
 ARG USERNAME=airflow
 ARG AIRENV=/home/${USERNAME}/air-env
-
+ARG GID=2001
+ARG UID=2000
 
 # temp install line before switching to use multi-stage install
 RUN apk add --no-cache gcc g++ binutils gfortran make libc-dev linux-headers \
@@ -17,7 +18,8 @@ COPY requirements.txt  /tmp/requirements.txt
 RUN cd "${AIRENV}" && "${INSTALLDIR}/bin/python3" -m venv . \
  && . ${AIRENV}/bin/activate \
  && pip install -U pip setuptools \
- && SLUGIFY_USES_TEXT_UNIDECODE=yes pip install -r /tmp/requirements.txt
+ && SLUGIFY_USES_TEXT_UNIDECODE=yes pip install -r /tmp/requirements.txt \
+ && chown -R ${UID}:${GID} /app
 
 ARG BASE=dellelce/py-base
 FROM $BASE as finale
@@ -44,13 +46,12 @@ RUN mkdir -p ${BASEDATA} && chmod 777 ${BASEDATA} \
        -G "${GROUP}" -u "${UID}" \
        "${USERNAME}"
 
-USER ${USERNAME}
-
 RUN    mkdir -p "${AIRENV}" && chown "${USERNAME}":"${GROUP}" "${AIRENV}" \
     && chown -R "${USERNAME}:${GROUP}" "${AIRHOME}" \
     && mkdir -p "${DATA}" && chown "${USERNAME}":"${GROUP}" "${DATA}" \
     && echo '. '${AIRENV}'/bin/activate'           >> ${AIRHOME}/.profile
 
+USER ${USERNAME}
 
 VOLUME ${DATA}
 ENV AIRDATA  ${DATA}
