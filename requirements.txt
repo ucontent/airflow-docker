@@ -1,1 +1,5 @@
+# see: https://github.com/pandas-dev/pandas/issues/34969
+#   panda cannot build with latest numpy(1.19.0)
+#
+numpy<=1.18.1
 apache-airflow
