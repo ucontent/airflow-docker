@@ -2,4 +2,5 @@
 #   panda cannot build with latest numpy(1.19.0)
 #
 numpy<=1.18.1
+typing_extensions
 apache-airflow
